@@ -185,6 +185,9 @@ export default class WorldScene extends Phaser.Scene {
       case 2:
         this.updateHomeBuild(delta)
         break
+      case 3:
+        this.updateMegabyteJoin()
+        break
       case 4:
         this.updateHealthStage()
         break
@@ -520,24 +523,72 @@ export default class WorldScene extends Phaser.Scene {
 
     this.stageObjects.push(background)
 
+    // Megabyte starts at top-right
     this.megabyte.setActive(true).setVisible(true)
     this.megabyte.setPosition(486, 93)
     this.megabyteFollow.enabled = false
 
     this.sounds.play('megabyte-join')
+
+    // Phase 1: Tween to intermediate position (508, 265)
     this.tweens.add({
       targets: this.megabyte,
-      x: this.player.x - 40,
-      y: this.player.y + 20,
-      duration: 4800,
+      x: 508,
+      y: 265,
+      duration: 3000,
       onComplete: () => {
+        // Phase 2: Enable follow to walk toward the player
         this.megabyteFollow.enabled = true
         this.flags.set('megabyte_joined', true)
         this.sounds.play('megabyte-bark')
         gameEvents.emit('ui-message', this.dialogue.megabyteWelcome, 3500)
-        this.transitionToNextStage(6000)
+        // stageState.triggered will be checked in updateMegabyteJoin
+        this.stageState.triggered = true
       },
     })
+  }
+
+  private updateMegabyteJoin() {
+    if (!this.stageState.triggered || this.stageState.completed) return
+
+    // Check if Megabyte is close to the player
+    const distance = Phaser.Math.Distance.Between(
+      this.megabyte.x, this.megabyte.y,
+      this.player.x, this.player.y
+    )
+
+    if (distance < 50 && !this.megabyteSitting) {
+      // Megabyte arrived — stop and sit
+      this.megabyteFollow.enabled = false
+      this.megabyte.setVelocity(0, 0)
+      this.megabyteSitting = true
+      this.megabyte.setTexture('megabyte-sitting')
+
+      // Spawn clickable heart above Megabyte
+      const heart = this.add.text(this.megabyte.x, this.megabyte.y - 30, '❤️', {
+        fontSize: '24px',
+      })
+      heart.setOrigin(0.5)
+      heart.setInteractive({ useHandCursor: true })
+      this.stageObjects.push(heart)
+
+      // Pulse animation on the heart
+      this.tweens.add({
+        targets: heart,
+        scale: 1.2,
+        yoyo: true,
+        repeat: -1,
+        duration: 600,
+      })
+
+      // Click/tap on heart triggers transition
+      heart.on('pointerdown', () => {
+        if (this.stageState.completed) return
+        this.sounds.play('megabyte-bark')
+        heart.destroy()
+        this.transitionToNextStage(800)
+      })
+    }
   }
 
   private setupHealthStage() {
