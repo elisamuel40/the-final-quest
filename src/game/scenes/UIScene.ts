@@ -9,6 +9,8 @@ export default class UIScene extends Phaser.Scene {
   private text!: Phaser.GameObjects.Text
   private dialogue!: DialogueSystem
   private messageTimer: Phaser.Time.TimerEvent | null = null
+  private lastAdvanceTime = 0
+  private readonly ADVANCE_DEBOUNCE = 250 // ms between dialogue advances
   private heartLabel!: Phaser.GameObjects.Text
   private heartBarBack!: Phaser.GameObjects.Rectangle
   private heartBarFill!: Phaser.GameObjects.Rectangle
@@ -92,6 +94,9 @@ export default class UIScene extends Phaser.Scene {
 
   private advanceDialogue() {
     if (!this.dialogue.isActive()) return
+    const now = this.time.now
+    if (now - this.lastAdvanceTime < this.ADVANCE_DEBOUNCE) return
+    this.lastAdvanceTime = now
     this.sounds.play('dialogue-advance')
     this.dialogue.advance()
   }
