@@ -80,6 +80,7 @@ export default class WorldScene extends Phaser.Scene {
   private buildBlueprint?: Phaser.GameObjects.Rectangle
   private homeBuildBackground?: Phaser.GameObjects.Image
   private homeBuildCompleted = false
+  private buildingSoundStarted = false
   private hamCollected = false
 
   constructor() {
@@ -302,6 +303,7 @@ export default class WorldScene extends Phaser.Scene {
     this.buildText = null
     this.megabyteSitting = false
     this.hamCollected = false
+    this.buildingSoundStarted = false
     this.megabyte.setTint(0xffffff)
     this.kira.setActive(false).setVisible(false).setAlpha(1)
     if (this.stageTimer) {
@@ -466,11 +468,15 @@ export default class WorldScene extends Phaser.Scene {
 
     if (bothPresent) {
       this.buildProgress = Math.min(1, this.buildProgress + delta * 0.00035)
-      if (!this.sounds.isPlaying('building')) {
-        this.sounds.playLoop('building', { volume: 0.5 })
+      if (!this.buildingSoundStarted) {
+        this.buildingSoundStarted = true
+        this.sounds.play('building', { volume: 0.25, seek: 2 })
       }
     } else {
-      this.sounds.stop('building')
+      if (this.buildingSoundStarted && this.sounds.isPlaying('building')) {
+        this.sounds.stop('building')
+        this.buildingSoundStarted = false
+      }
     }
 
     this.buildText.setText(`${Math.floor(this.buildProgress * 100)}%`)
