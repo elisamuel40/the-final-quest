@@ -345,10 +345,10 @@ export default class WorldScene extends Phaser.Scene {
         this.flags.set('friendship_unlocked', true)
         this.biancaFollow.enabled = true
         
-        gameEvents.emit('ui-message', '✨ FRIENDSHIP UNLOCKED ✨', 3000)
-        this.time.delayedCall(3500, () => {
-          gameEvents.emit('ui-message', this.dialogue.prologueHint, 5400)
-          this.time.delayedCall(5900, () => {
+        gameEvents.emit('ui-message', '✨ FRIENDSHIP UNLOCKED ✨', 2400)
+        this.time.delayedCall(3000, () => {
+          gameEvents.emit('ui-message', this.dialogue.prologueHint, 3600)
+          this.time.delayedCall(4200, () => {
             this.transitionToNextStage()
           })
         })
