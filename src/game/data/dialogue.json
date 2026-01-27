@@ -1,0 +1,31 @@
+{
+  "prologue": [
+    { "speaker": "Bianca", "text": "What do you call a fake noodle?" },
+    { "speaker": "Bianca", "text": "Impasta." },
+    { "speaker": "Jon", "action": "laugh" },
+    { "speaker": "Jon", "text": "Funny... wanna tell this joke to somebody else?" }
+  ],
+  "prologueHint": "Some things begin with a laugh.",
+  "prologueInstruction": "Walk Bianca to Jon.",
+  "moveInTogether": [
+    { "speaker": "Bianca + Jon", "text": "We don't want the fun to stop. Let's move together." }
+  ],
+  "moveInHint": "Some things only work when shared. Push the boxes into the marked area.",
+  "homeBuildHint": "Building takes trust. Stand together in the blueprint.",
+  "homeBuildComplete": "It's enough. It's ours.",
+  "homeBuildEnter": "Let's enter our new home.",
+  "megabyteJoinHint": "Every home finds its heart. Wait for Megabyte to join you.",
+  "megabyteWelcome": "Welcome home, Megabyte. You're family now.",
+  "healthHint": "Care changes everything. Bring Bianca close and press E near Megabyte.",
+  "healthComplete": "Care makes it bearable.",
+  "crossroadHint": "Not every companion is meant for every journey. Walk to the exit.",
+  "crossroadFarewell": "Thank you for the path so far.",
+  "togetherForwardHint": "Now the road is clear. Keep walking right.",
+  "lastTileInstruction": "Approach the altar with Megabyte nearby.",
+  "finalMissingHint": "Something feels missing...",
+  "proposal": [
+    { "speaker": "Jon", "text": "Baby, will you marry me?" },
+    { "speaker": "Bianca", "text": "Yes, Junito!" }
+  ],
+  "proposalHint": "Some things are made to last forever. Stand together on the altar."
+}

@@ -1,0 +1,140 @@
+{
+  "task": "background_concepts",
+  "style": {
+    "view": "top_down",
+    "camera": "orthographic",
+    "resolution": "640x360",
+    "art_style": "pixel_art, 2d tileset feel, clean clusters",
+    "lighting": "simple 2-3 shade ramps per material",
+    "palette": "limited palette, earthy with cool accents",
+    "linework": "no outlines; define shapes with color contrast",
+    "pixel_density": "medium, readable at 1x",
+    "notes": "Match existing scene-1-coronado mood; prioritize crisp silhouettes and flat color planes."
+  },
+  "global_constraints": [
+    "No characters or readable text in backgrounds.",
+    "Keep center area relatively open for player movement.",
+    "Avoid high-frequency noise; favor large shapes.",
+    "Perspective must remain strictly top-down.",
+    "Leave edges slightly darker to frame the play area."
+  ],
+  "scenes": [
+    {
+      "id": "scene_2_move_in",
+      "name": "Move In",
+      "prompt": {
+        "summary": "Top-down courtyard with moving boxes and a small path toward a house.",
+        "setting": "Compact outdoor yard with stone path, patches of grass, a few bushes, and a hint of house wall on the right edge.",
+        "composition": "Open central rectangle area for pushing boxes; path runs diagonally from lower-left to upper-right; a subtle fence line at top edge.",
+        "props": [
+          "Stacked crates area (empty space in center, no actual boxes drawn)",
+          "Low shrubs, a small tree in corner, scattered stones",
+          "Short fence or gate silhouette at top"
+        ],
+        "lighting": "late afternoon warm light, gentle shadows toward bottom-right",
+        "color_notes": "cool greens and warm browns; keep saturation moderate"
+      }
+    },
+    {
+      "id": "scene_3_home_build",
+      "name": "Home Build",
+      "prompt": {
+        "summary": "Top-down construction site with blueprint markings and a clear build zone.",
+        "setting": "Open lot with dirt ground, faint grid or chalk outline in center, tools on the edges.",
+        "composition": "Large empty center for build zone; tool clusters and lumber stacks in corners; subtle boundary with stones.",
+        "props": [
+          "Wood planks and beams at edges",
+          "Toolbox, hammer, sawhorse silhouettes",
+          "Blueprint chalk outline as faint lines (non-text)"
+        ],
+        "lighting": "neutral daylight with soft shadows",
+        "color_notes": "dusty browns, muted teal accents"
+      }
+    },
+    {
+      "id": "scene_4_megabyte_join",
+      "name": "Megabyte Join",
+      "prompt": {
+        "summary": "Top-down small interior entryway with a door and warm light.",
+        "setting": "Interior room with wood floor, a door on the right wall, a small rug near center.",
+        "composition": "Open floor space in center; door at right edge; a small table or coat rack near top.",
+        "props": [
+          "Rug or mat in center",
+          "Coat rack or small table near top-left",
+          "Wall baseboards with subtle highlights"
+        ],
+        "lighting": "warm indoor light from top-left",
+        "color_notes": "warm browns and amber; low contrast"
+      }
+    },
+    {
+      "id": "scene_5_health",
+      "name": "Health Challenge",
+      "prompt": {
+        "summary": "Top-down forest clearing with a potion altar area and soft mystical vibe.",
+        "setting": "Clearing with mossy ground, a circular stone patch in the center.",
+        "composition": "Open center circle; dense foliage at edges; a small stream or rock line at bottom-left.",
+        "props": [
+          "Stone circle in center",
+          "Mossy rocks and fallen log on one side",
+          "Subtle glowing mushrooms near edges (no text)"
+        ],
+        "lighting": "cool twilight with soft teal highlights",
+        "color_notes": "deep greens, cool blues, gentle teal glows"
+      }
+    },
+    {
+      "id": "scene_6_crossroad",
+      "name": "Crossroad",
+      "prompt": {
+        "summary": "Top-down forked path with two lanes, upper and lower.",
+        "setting": "Stone path split into two arcs across the scene; grassy field around.",
+        "composition": "Two broad horizontal lanes; center area clear; subtle markers at ends.",
+        "props": [
+          "Path stones with soft edges",
+          "Low grass tufts and a couple of signposts without text",
+          "Small flowers or stones near corners"
+        ],
+        "lighting": "early evening, slightly cool",
+        "color_notes": "blue-gray stone, muted green"
+      }
+    },
+    {
+      "id": "scene_7_final_path",
+      "name": "Final Path",
+      "prompt": {
+        "summary": "Top-down narrow path leading to a sacred area.",
+        "setting": "Long path through darker terrain; slight vignette at edges.",
+        "composition": "Path runs left to right; open center; darker borders create focus.",
+        "props": [
+          "Stone markers at sides",
+          "Sparse shrubs and rocky edges",
+          "Subtle rune-like patterns on stones (no readable text)"
+        ],
+        "lighting": "dim with focused highlight on center path",
+        "color_notes": "dark olive, slate, pale gold accents"
+      }
+    },
+    {
+      "id": "scene_8_last_tile",
+      "name": "Last Tile",
+      "prompt": {
+        "summary": "Top-down altar clearing with a focal platform.",
+        "setting": "Circular altar area with symmetrical stone pattern.",
+        "composition": "Altar at right-center; open space leading to it; faint radial stone ring.",
+        "props": [
+          "Altar platform with steps",
+          "Stone ring or petals around",
+          "Torch bases without flame detail"
+        ],
+        "lighting": "moonlit, gentle highlight on altar",
+        "color_notes": "cool grays, pale blue highlights"
+      }
+    }
+  ],
+  "output": {
+    "format": "png",
+    "background": "opaque",
+    "naming": "scene-<id>.png"
+  }
+}
