@@ -698,11 +698,11 @@ export default class WorldScene extends Phaser.Scene {
     })
 
     // Exit indicator - subtle visual hint
-    const exitIndicator = this.add.rectangle(GAME_WIDTH - 60, 240, 60, 70)
+    const exitIndicator = this.add.rectangle(GAME_WIDTH - 60, 220, 60, 70)
     exitIndicator.setStrokeStyle(2, 0x6fb1a3, 0.6)
     exitIndicator.setFillStyle(0x6fb1a3, 0.08)
 
-    const exitZone = this.add.zone(GAME_WIDTH - 60, 240, 60, 70)
+    const exitZone = this.add.zone(GAME_WIDTH - 60, 220, 60, 70)
     this.physics.add.existing(exitZone)
     this.crossroadExitZone = exitZone
 
