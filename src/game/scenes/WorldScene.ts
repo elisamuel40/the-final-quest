@@ -120,6 +120,8 @@ export default class WorldScene extends Phaser.Scene {
       .setCollideWorldBounds(true)
       .setActive(false)
       .setVisible(false)
+    this.kira.setDisplaySize(40, 40)
+    this.kira.setSize(40, 40)
 
     this.physics.world.setBounds(0, 0, GAME_WIDTH, GAME_HEIGHT)
 
@@ -673,20 +675,20 @@ export default class WorldScene extends Phaser.Scene {
 
     gameEvents.emit('ui-message', this.dialogue.crossroadHint, 6600)
 
-    // Kira enters from the right
+    // Kira enters from below
     this.kira.setActive(true).setVisible(true)
-    this.kira.setPosition(GAME_WIDTH + 50, GAME_HEIGHT / 2)
+    this.kira.setPosition(186, 354)
     this.kira.setAlpha(0)
 
-    // Animate Kira entering
+    // Animate Kira entering: (186,354) → (180,233)
     this.tweens.add({
       targets: this.kira,
-      x: 280,
+      x: 180,
+      y: 233,
       alpha: 1,
-      duration: 2000,
+      duration: 2500,
       delay: 1000,
       onComplete: () => {
-        // After Kira arrives, show message about Megabyte being anxious
         this.time.delayedCall(1500, () => {
           this.sounds.play('megabyte-anxious')
           gameEvents.emit('ui-message', 'Megabyte looks anxious. Press E to comfort her.', 5000)
@@ -730,21 +732,50 @@ export default class WorldScene extends Phaser.Scene {
   }
 
   private updateCrossroad() {
-    // After E is pressed and Megabyte is following, make Kira leave with a "new family"
     if (this.stageState.triggered && !this.megabyteSitting && this.kira.visible) {
-      this.stageState.triggered = false // Only do this once
-      
+      this.stageState.triggered = false
+
       gameEvents.emit('ui-message', 'Kira found her own path. Time to move forward.', 4500)
-      
-      // Kira leaves to the upper path
-      this.tweens.add({
-        targets: this.kira,
-        alpha: 0,
-        x: this.kira.x + 100,
-        y: 120,
-        duration: 2000,
-        delay: 500
-      })
+
+      // Kira exit via waypoints
+      const waypoints = [
+        { x: 175, y: 298 },
+        { x: 248, y: 154 },
+        { x: 206, y: 121 },
+        { x: 108, y: 103 },
+        { x: 180, y: 149 },
+      ]
+
+      let waypointIndex = 0
+      const moveToNext = () => {
+        if (waypointIndex >= waypoints.length) {
+          // Fade out at final waypoint
+          this.tweens.add({
+            targets: this.kira,
+            alpha: 0,
+            duration: 600,
+            onComplete: () => {
+              this.kira.setActive(false).setVisible(false)
+            },
+          })
+          return
+        }
+        const wp = waypoints[waypointIndex]
+        waypointIndex++
+        const dist = Phaser.Math.Distance.Between(this.kira.x, this.kira.y, wp.x, wp.y)
+        const speed = 80 // pixels per second
+        const duration = (dist / speed) * 1000
+        this.tweens.add({
+          targets: this.kira,
+          x: wp.x,
+          y: wp.y,
+          duration,
+          onComplete: moveToNext,
+        })
+      }
+
+      // Start after a brief delay
+      this.time.delayedCall(500, moveToNext)
     }
   }
 

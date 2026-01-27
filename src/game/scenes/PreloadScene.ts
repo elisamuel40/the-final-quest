@@ -20,7 +20,7 @@ export default class PreloadScene extends Phaser.Scene {
     this.load.image('bianca-wedding', 'assets/sprites/bianca-wedding.png')
     this.load.image('megabyte', 'assets/sprites/megabyte.png')
     this.load.image('megabyte-sitting', 'assets/sprites/megabyte-sitting.png')
-    this.load.svg('kira', 'assets/sprites/kira.svg', { width: 16, height: 16 })
+    this.load.image('kira', 'assets/sprites/kira.png')
     this.load.svg('box', 'assets/sprites/box.svg', { width: 16, height: 16 })
     this.load.svg('house', 'assets/sprites/house.svg', { width: 48, height: 32 })
     this.load.svg('door', 'assets/sprites/door.svg', { width: 12, height: 20 })
