@@ -74,7 +74,6 @@ export default class WorldScene extends Phaser.Scene {
   private readonly FOOTSTEP_INTERVAL = 280
   private buildZone: Phaser.GameObjects.Zone | null = null
   private homeDoorZone: Phaser.GameObjects.Zone | null = null
-  private crossroadExitZone?: Phaser.GameObjects.Zone
   private buildProgress = 0
   private buildText: Phaser.GameObjects.Text | null = null
   private buildBlueprint?: Phaser.GameObjects.Rectangle
@@ -704,7 +703,6 @@ export default class WorldScene extends Phaser.Scene {
 
     const exitZone = this.add.zone(GAME_WIDTH - 60, 220, 60, 70)
     this.physics.add.existing(exitZone)
-    this.crossroadExitZone = exitZone
 
     const collider = this.physics.add.overlap(this.player, exitZone, () => {
       if (this.stageState.completed) return

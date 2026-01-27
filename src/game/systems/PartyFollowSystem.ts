@@ -15,7 +15,7 @@ export default class PartyFollowSystem {
     this.entries.push(entry)
   }
 
-  update(deltaSeconds: number, skipSprite?: Phaser.Physics.Arcade.Sprite) {
+  update(_deltaSeconds: number, skipSprite?: Phaser.Physics.Arcade.Sprite) {
     for (const entry of this.entries) {
       if (skipSprite && entry.sprite === skipSprite) {
         continue

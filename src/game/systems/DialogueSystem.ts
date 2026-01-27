@@ -7,12 +7,15 @@ export type DialogueLine = {
 }
 
 export default class DialogueSystem {
+  private readonly textObject: Phaser.GameObjects.Text
   private lines: DialogueLine[] = []
   private index = 0
   private active = false
   private onComplete: (() => void) | null = null
 
-  constructor(private readonly textObject: Phaser.GameObjects.Text) {}
+  constructor(textObject: Phaser.GameObjects.Text) {
+    this.textObject = textObject
+  }
 
   start(lines: DialogueLine[], onComplete?: () => void) {
     this.lines = lines
