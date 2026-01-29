@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-**The Final Quest: Bianca & John** is a short pixel-art micro-game built as a wedding gift. It's a browser-based Phaser 3 game (~75-120 seconds playtime) that tells an interactive love story through 9 linear stages.
+**The Final Quest: Bianca & Jon** is a short pixel-art micro-game built as a wedding gift. It's a browser-based Phaser 3 game (~75-120 seconds playtime) that tells an interactive love story through 9 linear stages.
 
 - **Language:** TypeScript (strict mode)
 - **Framework:** Phaser 3.90.0

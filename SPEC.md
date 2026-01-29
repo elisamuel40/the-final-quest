@@ -1,4 +1,4 @@
-# The Final Quest: Bianca & John
+# The Final Quest: Bianca & Jon
 *With Megabyte by their side*
 
 ## Purpose
@@ -41,7 +41,7 @@ Made with love by **Eli & Cheska**.
 ---
 
 ## Characters
-- **John** – playable (primary)
+- **Jon** – playable (primary)
 - **Bianca** – companion (follows / proximity-based)
 - **Megabyte** – companion (joins later, unlocks mechanics)
 - **Kora** – temporary NPC (crossroad event only)
@@ -49,7 +49,7 @@ Made with love by **Eli & Cheska**.
 ---
 
 ## Global Mechanics
-- Player controls John
+- Player controls Jon
 - Bianca follows when close
 - Megabyte follows once unlocked
 - Interactions are proximity-based
@@ -96,7 +96,7 @@ Location: Hotel lobby (Coronado Springs-inspired)
 Duration: 12–15s
 
 Gameplay
-	•	Player controls John
+	•	Player controls Jon
 	•	Bianca NPC nearby
 	•	Interaction trigger on proximity
 
@@ -105,12 +105,12 @@ Dialogue (exact)
 [
   { "speaker": "Bianca", "text": "What do you call a fake noodle?" },
   { "speaker": "Bianca", "text": "Impasta." },
-  { "speaker": "John", "action": "laugh" },
-  { "speaker": "John", "text": "Funny… wanna tell this joke to somebody else?" }
+  { "speaker": "Jon", "action": "laugh" },
+  { "speaker": "Jon", "text": "Funny… wanna tell this joke to somebody else?" }
 ]
 
 Result
-	•	Bianca stays next to John
+	•	Bianca stays next to Jon
 	•	Flag set: friendship_unlocked = true
 	•	Fade to next scene
 
@@ -257,7 +257,7 @@ Text
 
 Quest Complete
 
-Bianca & John
+Bianca & Jon
 
 This adventure doesn’t end here.
 It just unlocked co-op mode.
