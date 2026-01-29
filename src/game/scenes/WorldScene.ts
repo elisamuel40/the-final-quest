@@ -119,8 +119,8 @@ export default class WorldScene extends Phaser.Scene {
       .setCollideWorldBounds(true)
       .setActive(false)
       .setVisible(false)
-    this.kira.setDisplaySize(40, 40)
-    this.kira.setSize(40, 40)
+    this.kira.setDisplaySize(42, 36)
+    this.kira.setSize(42, 36)
 
     this.physics.world.setBounds(0, 0, GAME_WIDTH, GAME_HEIGHT)
 
@@ -148,14 +148,18 @@ export default class WorldScene extends Phaser.Scene {
     })
 
     this.input.keyboard?.on('keydown-E', () => {
-      if (this.stageIndex === 4 || this.stageIndex === 5) {
+      if (this.stageIndex === 3) {
+        this.handleMegabytePet()
+      } else if (this.stageIndex === 4 || this.stageIndex === 5) {
         this.handleMegabyteSit()
       }
     })
 
     // Mobile action button handler
     gameEvents.on('mobile-action-pressed', () => {
-      if (this.stageIndex === 4 || this.stageIndex === 5) {
+      if (this.stageIndex === 3) {
+        this.handleMegabytePet()
+      } else if (this.stageIndex === 4 || this.stageIndex === 5) {
         this.handleMegabyteSit()
       }
     })
@@ -339,6 +343,7 @@ export default class WorldScene extends Phaser.Scene {
     this.biancaFollow.enabled = false
     this.controlledSprite = this.bianca
     this.logPositions('prologue')
+    this.sounds.playLoop('bg-prologue', { volume: 0.3 })
     gameEvents.emit('ui-message', this.dialogue.prologueInstruction, 6600)
 
     const trigger = this.add.zone(this.player.x, this.player.y, 48, 48)
@@ -516,8 +521,8 @@ export default class WorldScene extends Phaser.Scene {
     const background = this.add.image(GAME_WIDTH / 2, GAME_HEIGHT / 2, 'scene-4-megabyte-joins')
     background.setDisplaySize(GAME_WIDTH, GAME_HEIGHT)
     background.setDepth(-100)
-    this.player.setPosition(160, GAME_HEIGHT / 2)
-    this.bianca.setPosition(130, GAME_HEIGHT / 2 + 14)
+    this.player.setPosition(160, GAME_HEIGHT / 2 + 20)
+    this.bianca.setPosition(130, GAME_HEIGHT / 2 + 34)
     this.logPositions('megabyte_join')
 
     gameEvents.emit('ui-message', this.dialogue.megabyteJoinHint, 5000)
@@ -565,12 +570,11 @@ export default class WorldScene extends Phaser.Scene {
       this.megabyteSitting = true
       this.megabyte.setTexture('megabyte-sitting')
 
-      // Spawn clickable heart above Megabyte
+      // Spawn heart above Megabyte
       const heart = this.add.text(this.megabyte.x, this.megabyte.y - 30, '❤️', {
         fontSize: '24px',
       })
       heart.setOrigin(0.5)
-      heart.setInteractive({ useHandCursor: true })
       this.stageObjects.push(heart)
 
       // Pulse animation on the heart
@@ -582,13 +586,18 @@ export default class WorldScene extends Phaser.Scene {
         duration: 600,
       })
 
-      // Click/tap on heart triggers transition
-      heart.on('pointerdown', () => {
-        if (this.stageState.completed) return
-        this.sounds.play('megabyte-bark')
-        heart.destroy()
-        this.transitionToNextStage(800)
-      })
+      gameEvents.emit('ui-message', 'Press E to pet Megabyte.', 6600)
+    }
+  }
+
+  private handleMegabytePet() {
+    if (!this.megabyteSitting || this.stageState.completed) return
+    const distance = Phaser.Math.Distance.Between(this.player.x, this.player.y, this.megabyte.x, this.megabyte.y)
+    if (distance < 60) {
+      this.sounds.play('megabyte-bark')
+      this.transitionToNextStage(800)
+    } else {
+      gameEvents.emit('ui-message', 'Get closer to Megabyte and press E.', 3000)
     }
   }
 
@@ -735,13 +744,11 @@ export default class WorldScene extends Phaser.Scene {
 
       gameEvents.emit('ui-message', 'Kira found her own path. Time to move forward.', 4500)
 
-      // Kira exit via waypoints
+      // Kira exit via waypoints (smooth upward departure)
       const waypoints = [
-        { x: 175, y: 298 },
-        { x: 248, y: 154 },
-        { x: 206, y: 121 },
-        { x: 108, y: 103 },
-        { x: 180, y: 149 },
+        { x: 220, y: 170 },
+        { x: 170, y: 110 },
+        { x: 120, y: 60 },
       ]
 
       let waypointIndex = 0
@@ -884,9 +891,9 @@ export default class WorldScene extends Phaser.Scene {
     this.player.setTexture('jon-proposal-standing')
     this.player.setDisplaySize(34, 66)
     this.player.setSize(34, 66)
-    this.bianca.setTexture('bianca')
-    this.bianca.setDisplaySize(29, 60)
-    this.bianca.setSize(29, 60)
+    this.bianca.setTexture('bianca-proposal')
+    this.bianca.setDisplaySize(27, 66)
+    this.bianca.setSize(27, 66)
     this.player.setPosition(180, GAME_HEIGHT / 2 + 100)
     this.bianca.setPosition(GAME_WIDTH / 2, GAME_HEIGHT / 2)
     this.megabyte.setActive(false).setVisible(false)
@@ -952,6 +959,7 @@ export default class WorldScene extends Phaser.Scene {
     this.player.setVelocity(0, 0)
     this.player.setImmovable(true)
     this.logPositions('last_tile')
+    this.sounds.playLoop('bg-wedding', { volume: 0.3 })
     gameEvents.emit('ui-message', this.dialogue.lastTileInstruction, 6600)
 
     const background = this.add.image(GAME_WIDTH / 2, GAME_HEIGHT / 2, 'scene-8-wedding')
@@ -982,6 +990,9 @@ export default class WorldScene extends Phaser.Scene {
     this.player.setVelocity(0, 0)
     this.bianca.setVelocity(0, 0)
     this.megabyte.setVelocity(0, 0)
+    this.player.setPosition(274, 228)
+    this.bianca.setPosition(380, 228)
+    this.megabyte.setPosition(188, 228)
     this.logPositions('quest_complete')
 
     this.flags.set('quest_complete', true)
@@ -993,8 +1004,6 @@ export default class WorldScene extends Phaser.Scene {
       '',
       'This adventure doesn\'t end here.',
       'It just unlocked co-op mode.',
-      '',
-      'With Megabyte \uD83D\uDC3E',
       '',
       'Made with love by Eli & Cheska',
     ]
@@ -1024,6 +1033,16 @@ export default class WorldScene extends Phaser.Scene {
       const playerOnLeft = this.player.x < this.bianca.x
       this.player.setFlipX(playerOnLeft)
       this.bianca.setFlipX(!playerOnLeft)
+    }
+
+    // Megabyte faces toward the player
+    if (this.megabyte.active) {
+      const megaMoving = Math.abs(this.megabyte.body?.velocity.x ?? 0) > 0.5
+      if (megaMoving) {
+        this.megabyte.setFlipX((this.megabyte.body?.velocity.x ?? 0) > 0)
+      } else {
+        this.megabyte.setFlipX(this.megabyte.x < this.player.x)
+      }
     }
   }
 

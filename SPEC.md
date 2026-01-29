@@ -1,9 +1,3 @@
-Perfecto. A continuación tienes el SPEC.md completo, listo para copiar/pegar en tu repo y empezar a trabajar con agentes (Codex CLI, Copilot, Cursor) sin re-explicar nada.
-Está escrito para minimizar tokens, ser machine-friendly, y servir como single source of truth.
-
-⸻
-
-
 # The Final Quest: Bianca & John
 *With Megabyte by their side*
 

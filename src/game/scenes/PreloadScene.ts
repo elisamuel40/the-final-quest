@@ -17,6 +17,7 @@ export default class PreloadScene extends Phaser.Scene {
     this.load.image('jon-wedding', 'assets/sprites/jon-wedding.png')
     this.load.image('jon-proposal-knee', 'assets/sprites/jon-proposal-knee.png')
     this.load.image('jon-proposal-standing', 'assets/sprites/jon-proposal-standing.png')
+    this.load.image('bianca-proposal', 'assets/sprites/bianca-proposal.png')
     this.load.image('bianca-wedding', 'assets/sprites/bianca-wedding.png')
     this.load.image('megabyte', 'assets/sprites/megabyte.png')
     this.load.image('megabyte-sitting', 'assets/sprites/megabyte-sitting.png')

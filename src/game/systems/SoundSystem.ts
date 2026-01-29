@@ -12,6 +12,8 @@ export type SoundKey =
   | 'building'
   | 'bowl-fill'
   | 'door'
+  | 'bg-prologue'
+  | 'bg-wedding'
   // Future sounds (placeholders)
   | 'friendship-unlock'
   | 'box-push'
@@ -34,6 +36,8 @@ export const SOUND_KEYS: SoundKey[] = [
   'building',
   'bowl-fill',
   'door',
+  'bg-prologue',
+  'bg-wedding',
 ]
 
 export default class SoundSystem {
