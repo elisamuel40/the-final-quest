@@ -1054,7 +1054,7 @@ export default class WorldScene extends Phaser.Scene {
       megabyte: this.megabyte?.active
         ? { x: Math.round(this.megabyte.x), y: Math.round(this.megabyte.y) }
         : null,
-      kira: this.kira?.active ? { x: Math.round(this.kira.x), y: Math.round(this.kira.y) } : null,
+      kora: this.kora?.active ? { x: Math.round(this.kora.x), y: Math.round(this.kora.y) } : null,
     }
     console.log('[positions]', positions)
   }
