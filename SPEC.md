@@ -44,7 +44,7 @@ Made with love by **Eli & Cheska**.
 - **John** – playable (primary)
 - **Bianca** – companion (follows / proximity-based)
 - **Megabyte** – companion (joins later, unlocks mechanics)
-- **Kira** – temporary NPC (crossroad event only)
+- **Kora** – temporary NPC (crossroad event only)
 
 ---
 
@@ -66,7 +66,7 @@ moved_in
 home_built
 megabyte_joined
 health_challenge_complete
-kira_crossroad_complete
+kora_crossroad_complete
 at_altar
 quest_complete
 
@@ -79,7 +79,7 @@ Scene Flow Overview
 	3.	Challenge 2 – Buying a Home Together
 	4.	Event – Megabyte Joins the Party
 	5.	Challenge 3 – Health Issues (Care Potion)
-	6.	Challenge 4 – The Crossroad (Kira)
+	6.	Challenge 4 – The Crossroad (Kora)
 	7.	Final Path
 	8.	Altar
 	9.	Quest Complete Screen
@@ -206,13 +206,13 @@ Result
 
 ⸻
 
-6. Challenge — The Crossroad (Kira)
+6. Challenge — The Crossroad (Kora)
 
 Location: Forked path
 Duration: 20–25s
 
 Gameplay
-	•	Kira appears
+	•	Kora appears
 	•	Two paths visible
 	•	One slowly fades away
 
@@ -221,9 +221,9 @@ Text
 Not every companion is meant for every journey.
 
 Result
-	•	Kira exits calmly
+	•	Kora exits calmly
 	•	Megabyte remains
-	•	Flag: kira_crossroad_complete = true
+	•	Flag: kora_crossroad_complete = true
 
 ⸻
 

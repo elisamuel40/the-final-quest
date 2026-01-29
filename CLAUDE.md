@@ -54,7 +54,7 @@ Global `gameEvents` emitter (`src/game/events.ts`) for scene communication:
 
 ### Assets
 Assets live in `public/assets/`:
-- `sprites/` - Character PNGs and SVGs (jon, bianca, megabyte, kira with variants)
+- `sprites/` - Character PNGs and SVGs (jon, bianca, megabyte, kora with variants)
 - `backgrounds/` - Scene backgrounds (9 stages)
 
 Loaded in `PreloadScene.ts`. Characters have multiple texture variants (e.g., `jon-wedding`, `jon-proposal-knee`).

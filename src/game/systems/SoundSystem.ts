@@ -20,8 +20,8 @@ export type SoundKey =
   | 'box-placed'
   | 'proposal-yes'
   | 'quest-fanfare'
-  | 'kira-arrive'
-  | 'kira-depart'
+  | 'kora-arrive'
+  | 'kora-depart'
   | 'altar-reached'
 
 export const SOUND_KEYS: SoundKey[] = [

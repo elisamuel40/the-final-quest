@@ -43,7 +43,7 @@ export default class WorldScene extends Phaser.Scene {
   private player!: Phaser.Physics.Arcade.Sprite
   private bianca!: Phaser.Physics.Arcade.Sprite
   private megabyte!: Phaser.Physics.Arcade.Sprite
-  private kira!: Phaser.Physics.Arcade.Sprite
+  private kora!: Phaser.Physics.Arcade.Sprite
 
   private cursors?: Phaser.Types.Input.Keyboard.CursorKeys
   private keys?: {
@@ -114,13 +114,13 @@ export default class WorldScene extends Phaser.Scene {
       .setVisible(false)
     this.megabyte.setDisplaySize(45, 36)
     this.megabyte.setSize(45, 36)
-    this.kira = this.physics.add
-      .sprite(100, GAME_HEIGHT / 2, 'kira')
+    this.kora = this.physics.add
+      .sprite(100, GAME_HEIGHT / 2, 'kora')
       .setCollideWorldBounds(true)
       .setActive(false)
       .setVisible(false)
-    this.kira.setDisplaySize(42, 36)
-    this.kira.setSize(42, 36)
+    this.kora.setDisplaySize(42, 36)
+    this.kora.setSize(42, 36)
 
     this.physics.world.setBounds(0, 0, GAME_WIDTH, GAME_HEIGHT)
 
@@ -313,7 +313,7 @@ export default class WorldScene extends Phaser.Scene {
     this.hamCollected = false
     this.buildingSoundStarted = false
     this.megabyte.setTint(0xffffff)
-    this.kira.setActive(false).setVisible(false).setAlpha(1)
+    this.kora.setActive(false).setVisible(false).setAlpha(1)
     if (this.stageTimer) {
       this.stageTimer.remove(false)
       this.stageTimer = null
@@ -683,14 +683,14 @@ export default class WorldScene extends Phaser.Scene {
 
     gameEvents.emit('ui-message', this.dialogue.crossroadHint, 6600)
 
-    // Kira enters from below
-    this.kira.setActive(true).setVisible(true)
-    this.kira.setPosition(186, 354)
-    this.kira.setAlpha(0)
+    // Kora enters from below
+    this.kora.setActive(true).setVisible(true)
+    this.kora.setPosition(186, 354)
+    this.kora.setAlpha(0)
 
-    // Animate Kira entering: (186,354) → (180,233)
+    // Animate Kora entering: (186,354) → (180,233)
     this.tweens.add({
-      targets: this.kira,
+      targets: this.kora,
       x: 180,
       y: 233,
       alpha: 1,
@@ -729,7 +729,7 @@ export default class WorldScene extends Phaser.Scene {
         return
       }
 
-      this.flags.set('kira_crossroad_complete', true)
+      this.flags.set('kora_crossroad_complete', true)
       gameEvents.emit('ui-message', this.dialogue.crossroadFarewell, 4800)
       this.transitionToNextStage(5200)
     })
@@ -739,12 +739,12 @@ export default class WorldScene extends Phaser.Scene {
   }
 
   private updateCrossroad() {
-    if (this.stageState.triggered && !this.megabyteSitting && this.kira.visible) {
+    if (this.stageState.triggered && !this.megabyteSitting && this.kora.visible) {
       this.stageState.triggered = false
 
-      gameEvents.emit('ui-message', 'Kira found her own path. Time to move forward.', 4500)
+      gameEvents.emit('ui-message', 'Kora found her own path. Time to move forward.', 4500)
 
-      // Kira exit via waypoints (smooth upward departure)
+      // Kora exit via waypoints (smooth upward departure)
       const waypoints = [
         { x: 220, y: 170 },
         { x: 170, y: 110 },
@@ -756,22 +756,22 @@ export default class WorldScene extends Phaser.Scene {
         if (waypointIndex >= waypoints.length) {
           // Fade out at final waypoint
           this.tweens.add({
-            targets: this.kira,
+            targets: this.kora,
             alpha: 0,
             duration: 600,
             onComplete: () => {
-              this.kira.setActive(false).setVisible(false)
+              this.kora.setActive(false).setVisible(false)
             },
           })
           return
         }
         const wp = waypoints[waypointIndex]
         waypointIndex++
-        const dist = Phaser.Math.Distance.Between(this.kira.x, this.kira.y, wp.x, wp.y)
+        const dist = Phaser.Math.Distance.Between(this.kora.x, this.kora.y, wp.x, wp.y)
         const speed = 80 // pixels per second
         const duration = (dist / speed) * 1000
         this.tweens.add({
-          targets: this.kira,
+          targets: this.kora,
           x: wp.x,
           y: wp.y,
           duration,
